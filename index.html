@@ -7,11 +7,10 @@
         <style>
             body {
                 margin: 0;
-                padding: 0;
+                padding-top: 50%;
                 position: relative;
                 background: linear-gradient(45deg, #2c3e50, #3498db);
                 font-family: Arial, sans-serif;
-                height: 100vh;
             }
             .show{
                 width: 100%;
@@ -148,6 +147,15 @@
                 background-repeat: repeat;
                 background-size: 50px 50px;
                 background-attachment: fixed;
+            }
+
+            /* Center only the home screen content */
+            body.home-screen {
+                padding-top: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
             }
 
             .back-btn {
@@ -544,10 +552,8 @@ var startGame = function ()
     popup.style.display = 'none';
     levelDiv.style.display = 'none';
     
-    // Reset body styling for game mode
-    document.body.style.display = 'block';
-    document.body.style.alignItems = 'initial';
-    document.body.style.justifyContent = 'initial';
+    // Remove home screen class to restore original game styling
+    document.body.className = '';
     document.body.style.paddingTop = 0;
         
     var maindiv = document.getElementById("main");
@@ -1190,11 +1196,8 @@ function loader()
                        '<span id="dif">Difficulty:' + dif[lvl] + '</span>' +
                        (manualLevelSelect ? '<br/><small style="color: #666;">Manual Level Selection Active</small>' : '');
     
-    // Set body to flexbox centering only for home screen
-    document.body.style.display = 'flex';
-    document.body.style.alignItems = 'center';
-    document.body.style.justifyContent = 'center';
-    document.body.style.paddingTop = '0';
+    // Add class for home screen centering
+    document.body.className = 'home-screen';
     
     lastTime = Date.now();
 };
